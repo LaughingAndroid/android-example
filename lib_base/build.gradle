@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = 1.8}
+
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api project(':lib_utils')
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation "androidx.databinding:databinding-adapters:7.3.1"
+    implementation "androidx.databinding:databinding-common:7.4.2"
+    implementation "androidx.databinding:databinding-compiler-common:7.4.2"
+    implementation "androidx.databinding:databinding-compiler:7.3.1"
+    implementation "androidx.databinding:databinding-runtime:7.3.1"
+    //ARouter
+    api 'com.alibaba:arouter-api:1.5.2'
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
+
+    // 基础依赖包，必须要依赖
+    api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    // kotlin扩展（可选）
+    api 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
+    // fragment快速实现（可选）已废弃
+    api 'com.geyifeng.immersionbar:immersionbar-components:3.2.2'
+
+    api deps.holder.holder
+    kapt deps.holder.compiler
+
+    api "com.scwang.smart:refresh-layout-kernel:2.0.3"
+    api "com.scwang.smart:refresh-header-classics:2.0.3"
+    api "com.scwang.smart:refresh-footer-classics:2.0.3"
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'lib_base'
+            version = '1.0.0'
+        }
+    }
+}

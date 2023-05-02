@@ -1,0 +1,233 @@
+ext {
+    android = [
+            compileSdkVersion: 33,
+            buildToolsVersion: "30.0.2",
+            applicationId    : "com.laughing.lib.app",
+            minSdkVersion    : 21,
+            targetSdkVersion : 30,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+    ]
+
+}
+
+ext.deps = [:]
+def versions = [:]
+versions.arch_core = "2.0.0"
+versions.room = "2.1.0-alpha03"
+versions.lifecycle = "2.5.1"
+versions.support = "1.1.0-alpha05"
+versions.dagger = "2.16"
+versions.junit = "4.12"
+versions.espresso = "3.1.0-alpha4"
+versions.retrofit = "2.6.0"
+versions.okhttp_logging_interceptor = "4.2.1"
+versions.mockwebserver = "3.8.1"
+versions.apache_commons = "2.5"
+versions.mockito = "2.7.19"
+versions.mockito_all = "1.10.19"
+versions.mockito_android = "2.22.0"
+versions.dexmaker = "2.2.0"
+versions.constraint_layout = "2.0.0-alpha2"
+versions.glide = "4.9.0"
+versions.timber = "4.5.1"
+versions.android_gradle_plugin = '7.0.2'
+versions.rxjava2 = "2.1.3"
+versions.rx_android = "2.0.1"
+versions.atsl_runner = "1.1.0-alpha4"
+versions.atsl_rules = "1.1.0-alpha4"
+versions.hamcrest = "1.3"
+versions.kotlin = "1.8.0"
+versions.paging = "2.1.0-beta01"
+versions.navigation = "1.0.0-alpha07"
+versions.work = "1.0.0-alpha11"
+versions.gson = "2.8.2"
+versions.eventbus = "3.0.0"
+versions.lottie = "3.2.2"
+versions.multidex = "2.0.0"
+versions.coroutines = "1.3.0-RC"
+versions.viewpager_indicator = "2.4.1"
+versions.svga_play = "2.6.1"
+versions.exo_play = "2.9.6"
+versions.jsbridge = "1.0.4"
+versions.statusbar_util = "1.5.1"
+versions.smart_refresh_layout = "1.1.2"
+versions.smart_refresh_layout_h = "1.1.0"
+versions.wheelpicker = "1.1.3"
+versions.lib_zml = "2.1.0"
+versions.rx_lifecycle = "2.1.0"
+versions.track = "2.0.12.0-SNAPSHOT"
+versions.line = "5.6.2"
+versions.gt3_android = "4.3.5"
+versions.holder = "1.0.6"
+
+
+def deps = [:]
+
+def support = [:]
+support.annotations = "androidx.annotation:annotation:$versions.support"
+support.app_compat = "androidx.appcompat:appcompat:$versions.support"
+support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
+support.cardview = "androidx.cardview:cardview:$versions.support"
+support.design = "com.google.android.material:material:$versions.support"
+support.v4 = "androidx.legacy:legacy-support-v4:$versions.support"
+support.core_utils = "androidx.legacy:legacy-support-core-utils:$versions.support"
+deps.support = support
+
+def room = [:]
+room.runtime = "androidx.room:room-runtime:$versions.room"
+room.compiler = "androidx.room:room-compiler:$versions.room"
+room.rxjava2 = "androidx.room:room-rxjava2:$versions.room"
+room.coroutines = "androidx.room:room-coroutines:$versions.room"
+room.testing = "androidx.room:room-testing:$versions.room"
+deps.room = room
+
+def lifecycle = [:]
+lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
+lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+lifecycle.viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+lifecycle.livedata = "androidx.lifecycle:lifecycle-livedata:$versions.lifecycle"
+lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+deps.lifecycle = lifecycle
+
+def arch_core = [:]
+arch_core.testing = "androidx.arch.core:core-testing:$versions.arch_core"
+deps.arch_core = arch_core
+
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.adapter_rxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.mock = "com.squareup.retrofit2:retrofit-mock:$versions.retrofit"
+deps.retrofit = retrofit
+deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
+
+def dagger = [:]
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+dagger.android = "com.google.dagger:dagger-android:$versions.dagger"
+dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dagger"
+dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
+dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
+deps.dagger = dagger
+
+def espresso = [:]
+espresso.core = "androidx.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "androidx.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "androidx.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+def atsl = [:]
+atsl.runner = "androidx.test:runner:$versions.atsl_runner"
+atsl.rules = "androidx.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+mockito.android = "org.mockito:mockito-android:$versions.mockito_android"
+deps.mockito = mockito
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+kotlin.core = "androidx.core:core-ktx:1.7.0-alpha01"
+deps.kotlin = kotlin
+
+deps.paging_ktx = "androidx.paging:paging-runtime-ktx:$versions.paging"
+
+deps.eventbus = "org.greenrobot:eventbus:$versions.eventbus"
+deps.trackerNew = "com.zhangmen.track:track-android:$versions.track"
+deps.lottie = "com.airbnb.android:lottie:$versions.lottie"
+deps.rxpermissions = "com.github.tbruyelle:rxpermissions:0.10.2"
+
+deps.multidex = "androidx.multidex:multidex:$versions.multidex"
+
+def coroutines = [:]
+coroutines.core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+coroutines.android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+coroutines.rx2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$versions.coroutines"
+deps.coroutines = coroutines
+
+def arouter = [:]
+arouter.api = "com.alibaba:arouter-api:1.5.0"
+arouter.compiler = "com.alibaba:arouter-compiler:1.5.2"
+deps.arouter = arouter
+
+def gson = [:]
+gson.runtime = "com.google.code.gson:gson:$versions.gson"
+deps.gson = gson
+
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+glide.glide_annotations = "com.github.bumptech.glide:annotations:$versions.glide"
+glide.glide_okhttp3_integration = "com.github.bumptech.glide:okhttp3-integration:$versions.glide"
+deps.glide = glide
+
+deps.dexmaker = "com.linkedin.dexmaker:dexmaker-mockito:$versions.dexmaker"
+deps.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+deps.timber = "com.jakewharton.timber:timber:$versions.timber"
+deps.junit = "junit:junit:$versions.junit"
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.mockwebserver"
+deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
+deps.rx_lifecycle2 = "com.trello.rxlifecycle2:rxlifecycle-components:$versions.rx_lifecycle"
+deps.hamcrest = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+deps.viewpager_indicator = "com.github.JakeWharton:ViewPagerIndicator:$versions.viewpager_indicator"
+deps.svga_play = "com.github.yyued:SVGAPlayer-Android:$versions.svga_play"
+deps.exo_play = "com.google.android.exoplayer:exoplayer:$versions.exo_play"
+deps.jsbridge = "com.github.lzyzsd:jsbridge:$versions.jsbridge"
+deps.statusbar_util = "com.jaeger.statusbarutil:library:$versions.statusbar_util"
+deps.smart_refresh_layout = "com.scwang.smartrefresh:SmartRefreshLayout:$versions.smart_refresh_layout"
+deps.smart_refresh_layout_h = "com.scwang.smartrefresh:SmartRefreshHorizontal:$versions.smart_refresh_layout_h"
+deps.wheelpicker = "cn.aigestudio.wheelpicker:WheelPicker:$versions.wheelpicker"
+deps.lib_zml = "com.zmlearn.lib.zml:lib_zml:$versions.lib_zml"
+deps.wechat = "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+"
+deps.mmkv = "com.tencent:mmkv-static:1.2.10"
+deps.line = "com.linecorp.linesdk:linesdk:$versions.line"
+deps.gt3_android = "com.geetest.sensebot:sensebot:$versions.gt3_android"
+deps.eventbus = "org.greenrobot:eventbus:3.2.0"
+deps.eventbus_annotation_processor = "org.greenrobot:eventbus-annotation-processor:3.2.0"
+
+ext.deps = deps
+
+def build_versions = [:]
+build_versions.min_sdk = 21
+build_versions.target_sdk = 30
+build_versions.build_tools = "28.0.3"
+build_versions.version_code = 2000
+build_versions.version_name = "2.0.0"
+ext.build_versions = build_versions
+
+def work = [:]
+work.runtime = "android.arch.work:work-runtime:$versions.work"
+work.testing = "android.arch.work:work-testing:$versions.work"
+work.firebase = "android.arch.work:work-firebase:$versions.work"
+work.runtime_ktx = "android.arch.work:work-runtime-ktx:$versions.work"
+deps.work = work
+
+def navigation = [:]
+navigation.runtime = "android.arch.navigation:navigation-runtime:$versions.navigation"
+navigation.runtime_ktx = "android.arch.navigation:navigation-runtime-ktx:$versions.navigation"
+navigation.fragment = "android.arch.navigation:navigation-fragment:$versions.navigation"
+navigation.fragment_ktx = "android.arch.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.safe_args_plugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+navigation.testing = "android.arch.navigation:navigation-testing:$versions.navigation"
+deps.navigation = navigation
+
+def ument = [:]
+ument.common = "com.umeng.umsdk:common:9.3.8"
+ument.asms = "com.umeng.umsdk:asms:1.2.2"
+//ument.share_core = "com.umeng.umsdk:share-core:7.1.4"
+//ument.share_board = "com.umeng.umsdk:share-board:7.1.4"
+//ument.share_wx = "com.umeng.umsdk:share-wx:7.1.4"
+deps.ument = ument
+
+def holder = [:]
+holder.holder = "com.gitee.laughing1221.holder:holder:$versions.holder"
+holder.compiler = "com.gitee.laughing1221.holder:holder-compiler:$versions.holder"
+deps.holder = holder

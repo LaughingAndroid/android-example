@@ -1,0 +1,103 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kapt {
+        arguments {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions { jvmTarget = 1.8}
+
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.startup:startup-runtime:1.1.1'
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+    implementation "androidx.fragment:fragment-ktx:1.5.2"
+    implementation "com.squareup.okio:okio:3.3.0"
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.tencent:mmkv:1.2.15'
+    implementation 'com.google.android.material:material:1.6.0'
+    //View
+    api 'androidx.recyclerview:recyclerview:1.2.1'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
+
+    // 协程
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:1.5.2"
+
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.java8
+
+    kapt deps.lifecycle.compiler
+
+    api "io.reactivex.rxjava2:rxjava:2.2.21"
+    api "io.reactivex.rxjava2:rxandroid:2.1.1"
+
+    api deps.kotlin.core
+    api "com.google.code.gson:gson:2.10.1"
+
+    api deps.glide.runtime
+    api deps.glide.glide_okhttp3_integration
+
+    // okdownload核心库
+    implementation 'com.liulishuo.okdownload:okdownload:1.0.7'
+    //存储断点信息的数据库
+    implementation 'com.liulishuo.okdownload:sqlite:1.0.7'
+    //提供okhttp连接，如果使用的话，需要引入okhttp网络请求库
+    implementation 'com.liulishuo.okdownload:okhttp:1.0.7'
+
+    //http
+    api deps.retrofit.runtime
+    api deps.retrofit.gson
+    deps.okhttp_logging_interceptor
+
+    api 'com.squareup.okhttp3:okhttp:4.2.2'
+    //接口请求通知
+    debugApi 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseApi 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
+    api("com.google.android.exoplayer:exoplayer:2.18.2")
+    api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+
+    api 'com.alibaba:arouter-api:1.5.2'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'lib_utils'
+            version = '1.0.0'
+        }
+    }
+}
